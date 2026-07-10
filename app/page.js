@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 
@@ -27,6 +28,9 @@ export default function Home() {
         <div key={project.id} className="bg-white rounded-lg shadow-md p-6 m-4 w-full max-w-md">
           <h2>{project.title}</h2>
           <p>{project.description}</p>
+          <Link href="/blog" className="text-blue-500 hover:underline">
+            Read More
+          </Link>
           <button onClick={()=>handleDelete(project.id)} className="bg-red-500 text-white px-4 py-2 rounded mt-4">Delete</button>
         </div>
       ))}

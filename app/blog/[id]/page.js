@@ -1,3 +1,11 @@
+export const metadata = {
+  title: {
+    absolute: 'About | Portfolio Builder',
+  },
+}
+ 
+
+
 export default async function BlogPost({ params }) {
     const { id } = await params;
 

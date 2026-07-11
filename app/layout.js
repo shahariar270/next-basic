@@ -12,7 +12,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Portfolio Builder",
+  title: {
+    template: '%s | "Portfolio Builder"',
+    default: "Home | Portfolio Builder",
+  },
   description: "A portfolio builder for developers and designers to showcase their work.",
 };
 

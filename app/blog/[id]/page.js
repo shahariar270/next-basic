@@ -1,23 +1,24 @@
-export const metadata = {
-  title: {
-    absolute: 'About | Portfolio Builder',
-  },
-}
- 
+import { notFound } from "next/navigation";
 
+async function getPost(id) {
+    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+    if (!res.ok) notFound();
+    return res.json();
+}
+
+export async function generateMetadata({ params }) {
+    const { id } = await params;
+    const post = await getPost(id);
+
+    return {
+        title: post.title,
+        description: post.body.slice(0, 150),
+    };
+}
 
 export default async function BlogPost({ params }) {
     const { id } = await params;
-    const currentData = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-    const currentPost = await currentData.json();
-
-    // Fetch the blog post data based on the ID
-    // This is a placeholder - replace with actual data fetching logic
-    const blogPost = {
-        id,
-        title: `Blog Post ${id}`,
-        content: `This is the content of blog post ${id}.`
-    };
+    const currentPost = await getPost(id);
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen py-2">
